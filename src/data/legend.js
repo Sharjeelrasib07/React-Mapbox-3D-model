@@ -37,7 +37,7 @@ const Legend = () => {
           <div style={{ display: 'flex', marginLeft: 5, marginRight: 10, backgroundColor: 'gray', color: 'black', justifyContent: 'space-between' }}>80000</div>
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 

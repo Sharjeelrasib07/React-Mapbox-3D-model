@@ -61,6 +61,7 @@ function App() {
   return (
     <div style={{ width: '100%', height: '100vh' }}>
       <Map
+
         mapboxAccessToken="pk.eyJ1IjoiYXJmYWtsIiwiYSI6ImNsYnQzd284eDA5OGUzcHBmc2VjOTJ4dzEifQ.RFRiN_WHNN8c4zO7nt2XLA"
         initialViewState={{
           latitude: 30,
@@ -116,6 +117,8 @@ function App() {
           </div>
         )}
         <NavigationControl showCompass={true} position="bottom-right" />
+        
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
       </Map>
     </div>
   );

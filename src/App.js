@@ -6,6 +6,10 @@ import Legend from './data/legend';
 import LayerStyles from './data/LayerStyles';
 import MapboxRadioButtons from './data/radiobutton';
 import pak_label from './data/pak_label';
+import mapboxgl from 'mapbox-gl';
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 function App() {
   const [selectedLayer, setSelectedLayer] = useState('population');
@@ -61,7 +65,6 @@ function App() {
   return (
     <div style={{ width: '100%', height: '100vh' }}>
       <Map
-
         mapboxAccessToken="pk.eyJ1IjoiYXJmYWtsIiwiYSI6ImNsYnQzd284eDA5OGUzcHBmc2VjOTJ4dzEifQ.RFRiN_WHNN8c4zO7nt2XLA"
         initialViewState={{
           latitude: 30,
@@ -76,14 +79,32 @@ function App() {
         <Source id="my-data" type="geojson" data={pak_boundaries}>
           <Layer {...FillExtrusionLayer} />
         </Source>
-        <Source id="src-labels" type="geojson" data={pak_label}>
+        <Source id="src-labels1" type="geojson" data={pak_label}>
           <Layer
-            id="labels"
+            id="labels1"
             type="symbol"
             layout={{
               'text-field': ['get', 'NAME_1'],
               'text-size': 14,
+              'text-offset': [0, -4],
+              'text-allow-overlap': false, // Avoid overlapping labels
+            }}
+            paint={{
+              'text-color': 'white',
+              'text-halo-color': 'rgba(0,0,0,0.9)',
+              'text-halo-width': 3,
+            }}
+          />
+        </Source>
+        <Source id="src-labels2" type="geojson" data={pak_label}>
+          <Layer
+            id="labels2"
+            type="symbol"
+            layout={{
+              'text-field': ['get', selectedLayer],
+              'text-size': 14,
               'text-offset': [0, -2],
+              'text-allow-overlap': false, // Avoid overlapping labels
             }}
             paint={{
               'text-color': 'white',
@@ -117,8 +138,6 @@ function App() {
           </div>
         )}
         <NavigationControl showCompass={true} position="bottom-right" />
-        
-mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
       </Map>
     </div>
   );

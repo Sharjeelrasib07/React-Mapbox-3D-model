@@ -1,4 +1,6 @@
 const LayerStyles = {
+
+
   population: [
     [2000000, 10000],
     [2500000, 20000],

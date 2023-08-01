@@ -1,7 +1,7 @@
 
 const MapboxRadioButtons = ({ selectedLayer, handleOptionChange }) => {
   return (
-    <div style={{position: 'absolute', zIndex: 1000}}>
+    <div style={{backgroundColor:"grey",position: 'absolute', zIndex: 1000}}>
       <div>
         <label>
           <input
